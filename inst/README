@@ -1,0 +1,10 @@
+Le nom de chaque instance se compose d'une majuscule, d'un nombre et d'une minuscule
+La majuscule indique le type d'instance (voir ci-dessous).
+Le nombre indique le nombre de sites dans l'instance.
+La minuscule indique permet de différencier les instances similaires.
+
+- mini : instance minimaliste de test
+- A* : demandes constantes... (commencer par celle-ci !)
+- B* : demandes peu variables
+- C* : demandes très variables
+
