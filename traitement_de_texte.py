@@ -17,33 +17,21 @@ def recup_sites(fichier: str) -> List:
         entrepots = []
         usines = []
         for element in content:
+            helpvar = element.split(':')[1:]
+            for i in range(6):
+                if i == 3 or i == 1:
+                    helpvar[i] = float(helpvar[i])
+                else:
+                    helpvar[i] = int(helpvar[i])
             if 'magasin' in element:
-                helpvar = element.split(':')[1:]
-                for i in range(6):
-                    if i == 3 or i == 1:
-                        helpvar[i] = float(helpvar[i])
-                    else:
-                        helpvar[i] = int(helpvar[i])
                 magasins.append(Magasin(helpvar[0], helpvar[1], helpvar[2], helpvar[3], helpvar[4], helpvar[5]))
                 continue
            
             if 'usine' in element:
-                helpvar = element.split(':')[1:]
-                for i in range(6):
-                    if i == 3 or i == 1:
-                        helpvar[i] = float(helpvar[i])
-                    else:
-                        helpvar[i] = int(helpvar[i])
                 usines.append(Usine(helpvar[0], helpvar[1], helpvar[2], helpvar[3], helpvar[4], helpvar[5]))
                 continue
             
             if 'entrepot' in element:
-                helpvar = element.split(':')[1:]
-                for i in range(6):
-                    if i == 3 or i == 1:
-                        helpvar[i] = float(helpvar[i])
-                    else:
-                        helpvar[i] = int(helpvar[i])
                 entrepots.append(Entrepot(helpvar[0], helpvar[1], helpvar[2], helpvar[3], helpvar[4], helpvar[5]))
         
         data = [usines, entrepots, magasins]
