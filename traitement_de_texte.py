@@ -1,5 +1,7 @@
 from typing import List
-
+from magasin import Magasin
+from usine import Usine
+from entrepot import Entrepot
 
 def recup_param(fichier: str) -> tuple:
     with open(fichier,'r') as f:
@@ -22,7 +24,7 @@ def recup_sites(fichier: str) -> List:
                         helpvar[i] = float(helpvar[i])
                     else:
                         helpvar[i] = int(helpvar[i])
-                magasins.append(helpvar)
+                magasins.append(Magasin(helpvar[0], helpvar[1], helpvar[2], helpvar[3], helpvar[4], helpvar[5]))
                 continue
            
             if 'usine' in element:
@@ -32,7 +34,7 @@ def recup_sites(fichier: str) -> List:
                         helpvar[i] = float(helpvar[i])
                     else:
                         helpvar[i] = int(helpvar[i])
-                usines.append(helpvar)
+                usines.append(Usine(helpvar[0], helpvar[1], helpvar[2], helpvar[3], helpvar[4], helpvar[5]))
                 continue
             
             if 'entrepot' in element:
@@ -42,7 +44,7 @@ def recup_sites(fichier: str) -> List:
                         helpvar[i] = float(helpvar[i])
                     else:
                         helpvar[i] = int(helpvar[i])
-                entrepots.append(helpvar)
+                entrepots.append(Entrepot(helpvar[0], helpvar[1], helpvar[2], helpvar[3], helpvar[4], helpvar[5]))
         
         data = [usines, entrepots, magasins]
         return data
@@ -52,4 +54,4 @@ def recup_sites(fichier: str) -> List:
 def recup_historique(fichier: str):
 '''
 #print(recup_param('projet info\instances\inst\A3a-params.txt'))
-print(recup_sites('projet info\instances\inst\B7a-sites.txt'))
+print(recup_sites('inst\A3a-sites.txt'))

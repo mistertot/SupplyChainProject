@@ -1,13 +1,18 @@
 
 
 class Entrepot () :
-    def __init__(self,Capa_stocke : int, Cout_stocke : float, Stock_inite: int , Stock_finale: int) -> None:
-        self.capa_stock : int = Capa_stocke
-        self.cout_stock : float = Cout_stocke
-        self.stock_init : int = Stock_inite
-        self.stock_final : int = Stock_finale
+    def __init__(self,cap_prod: int ,cout_prod: float ,cap_stock : int, cout_stock : float
+    , stock_int : int, stock_fin : int ) -> None: 
 
-    
+        self.cap_stock : int = cap_stock
+        self.cout_stock : float = cout_stock 
+        self.stock_int : int = stock_int 
+        self.stock_fin : int = stock_fin
+        self.cap_prod : float = cap_prod
+        self.cout_prod : float = cout_prod
+    def __repr__(self) -> str:
+        return "Entrepot : {0}; {1}; {2}; {3}; {4}; {5}".format(self.cap_prod, self.cout_prod,
+         self.cap_stock, self.cout_stock, self.stock_int, self.stock_fin)
 
 
 
