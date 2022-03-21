@@ -40,9 +40,15 @@ def recup_sites(fichier: str) -> List:
         data = [usines, entrepots, magasins]
         return data
 
-'''def recup_transport(fichier: str):
+def recup_transport(sites: str, fichier: str):
+    with open(sites, 'r') as f1, open(fichier, 'r') as f2:
+        content = f1.readlines()
+        n = len(content)
+        content = f2.readlines()
+        
 
-def recup_historique(fichier: str):
+
+'''def recup_historique(fichier: str):
 '''
 #print(recup_param('projet info\instances\inst\A3a-params.txt'))
-print(recup_sites('inst\A3a-sites.txt'))
+print(recup_sites('inst\B6b-sites.txt'))

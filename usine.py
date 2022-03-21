@@ -14,7 +14,7 @@ class Usine :
         self.stock_fin : int = stock_fin #6
         self.cap_prod : float = cap_prod #1
         self.cout_prod : float = cout_prod #2
-        self.Lcommande: List[Magasin] = []
+        #self.Lcommande: List[Magasin] = []
 
     #def capacité_prod(self,magasin: Magasin):
     
