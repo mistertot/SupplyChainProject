@@ -1,6 +1,7 @@
 
 
-class Entrepot () :
+class Entrepot:
+    
     def __init__(self,cap_prod: int ,cout_prod: float ,cap_stock : int, cout_stock : float
     , stock_int : int, stock_fin : int ) -> None: 
 

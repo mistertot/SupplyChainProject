@@ -1,6 +1,7 @@
 from typing import List
 from magasin import Magasin
 from usine import Usine
+from transport import Transport
 from entrepot import Entrepot
 
 def recup_param(fichier: str) -> tuple:

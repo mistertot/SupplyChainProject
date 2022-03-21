@@ -2,6 +2,8 @@ from magasin import Magasin
 from typing import List
 from usine import Usine
 from entrepot import Entrepot
+
+
 class Entreprise :
 
     def __init__(self,nbMagasin,nbUsine,nbEntrepot):

@@ -1,6 +1,9 @@
 
 from magasin import Magasin 
 from typing import List
+
+
+
 class Usine :
     def __init__(self,cap_prod: int ,cout_prod: float ,cap_stock : int, cout_stock : float
     , stock_int : int, stock_fin : int ) -> None: 
@@ -22,7 +25,7 @@ class Usine :
     def production(self, magasins: Magasin) -> int :
         if self.cap_prod <magasins.commande():
             return self.cap_prod
-        return magasin.commande()
+        return magasins.commande()
 
     def stock(self, magasin: Magasin) -> int: # definir un stock actuel (état des stock)
         
