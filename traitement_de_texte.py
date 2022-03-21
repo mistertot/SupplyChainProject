@@ -4,6 +4,7 @@ from usine import Usine
 from entrepot import Entrepot
 
 def recup_param(fichier: str) -> tuple:
+    '''Lit le fichier nom-params.txt et renvoie l'horizon de planification ainsi que le prix d'un produit'''
     with open(fichier,'r') as f:
         content = f.readlines()
         horizon = int(content[0])
@@ -11,6 +12,7 @@ def recup_param(fichier: str) -> tuple:
     return (horizon, prix)
 
 def recup_sites(fichier: str) -> List:
+    '''Lit le fichier nom-sites.txt et initialise les différents sites'''
     with open(fichier,'r') as f:
         content = f.readlines()
         magasins = []
