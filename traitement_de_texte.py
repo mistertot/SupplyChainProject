@@ -1,19 +1,21 @@
 from typing import List
 from magasin import Magasin
 from usine import Usine
-from transport import Transport
 from entrepot import Entrepot
+from re import findall
 
-def recup_param(fichier: str) -> tuple:
+def recup_param(instance: str) -> tuple:
     '''Lit le fichier nom-params.txt et renvoie l'horizon de planification ainsi que le prix d'un produit'''
+    fichier = instance + '-params.txt'
     with open(fichier,'r') as f:
         content = f.readlines()
         horizon = int(content[0])
         prix = float(content[1])
     return (horizon, prix)
 
-def recup_sites(fichier: str) -> List:
+def recup_sites(instance: str) -> List:
     '''Lit le fichier nom-sites.txt et initialise les différents sites'''
+    fichier = instance + '-sites.txt'
     with open(fichier,'r') as f:
         content = f.readlines()
         magasins = []
@@ -40,15 +42,33 @@ def recup_sites(fichier: str) -> List:
         data = [usines, entrepots, magasins]
         return data
 
-def recup_transport(sites: str, fichier: str):
-    with open(sites, 'r') as f1, open(fichier, 'r') as f2:
-        content = f1.readlines()
-        n = len(content)
-        content = f2.readlines()
-        
+def recup_transport(instance: str)-> List:
+    
+    fichier = instance + '-transport.txt'
+    with open(fichier, 'r') as f:
+        n = int(findall('\d+', instance)[0])
+        print(n)
+        cpt = 0
+        capacites = []
+        couts = []
+        for line in f:
+            helpvar = line.split(' ')
+            if cpt < n:
+                for i in range(n):
+                    capacites.append(int(helpvar[i]))
+            else:
+                for i in range(n):
+                    couts.append(float(helpvar[i]))
+            cpt += 1
+        helplist = [(capacites[i], couts[i]) for i in range(n*n)]
+        data = [helplist[i:i + n] for i in range(0, n*n, n)]
+        return(data)
 
 
+a = 'C1334a'
+print(int(a[1:-1]))
+recup_transport('inst\B6b')
 '''def recup_historique(fichier: str):
 '''
-#print(recup_param('projet info\instances\inst\A3a-params.txt'))
-print(recup_sites('inst\B6b-sites.txt'))
+print(recup_param('inst\A3a'))
+print(recup_sites('inst\B6b'))

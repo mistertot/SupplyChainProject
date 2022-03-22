@@ -1,25 +1,17 @@
 
 from magasin import Magasin 
 from typing import List
+from sites import Site
 
-
-
-class Usine :
-    def __init__(self,cap_prod: int ,cout_prod: float ,cap_stock : int, cout_stock : float
-    , stock_int : int, stock_fin : int ) -> None: 
-
-        self.cap_stock : int = cap_stock #3
-        self.cout_stock : float = cout_stock #4 
-        self.stock_int : int = stock_int #5
-        self.stock_fin : int = stock_fin #6
-        self.cap_prod : float = cap_prod #1
-        self.cout_prod : float = cout_prod #2
+class Usine(Site):
+    def __build__(self) -> None: 
+        super().__init__()
         #self.Lcommande: List[Magasin] = []
 
     #def capacité_prod(self,magasin: Magasin):
     
     def __repr__(self) -> str:
-        return "Usine : {0}; {1}; {2}; {3}; {4}; {5}".format(self.cap_prod, self.cout_prod,
+        return "( Usine : {0}; {1}; {2}; {3}; {4}; {5} )".format(self.cap_prod, self.cout_prod,
          self.cap_stock, self.cout_stock, self.stock_int, self.stock_fin)
 
     def production(self, magasins: Magasin) -> int :
