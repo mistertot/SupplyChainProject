@@ -7,11 +7,10 @@ from traitement_de_texte import recup_sites
 
 class Entreprise :
 
-    def __init__(self, instance : str):
-        sites: List = recup_sites(instance)
-        self.usines: List [Usine] = sites[0]
-        self.entrepots: List[Entrepot] = sites[1]
-        self.magasins: List[Magasin] = sites[2]
+    def __init__(self, path : str):
+        self.usines: List [Usine] = recup_sites(path)[0]
+        self.entrepots: List[Entrepot] = recup_sites(path)[1]
+        self.magasins: List[Magasin] = recup_sites(path)[2]
         
 
     def __repr__(self) -> str:
@@ -26,7 +25,7 @@ class Entreprise :
 
     def production(self) -> int :
         qte_prod_restante = self.nb_de_commande_total
-        for p in self.Lusine:
+        for p in self.usines:
             prod_non_perdu = min(p.cap_prod,p.cap_stock)
             if prod_non_perdu<qte_prod_restante:
                 p.prod = prod_non_perdu 
@@ -38,9 +37,30 @@ class Entreprise :
     def cout_usine(u:Usine):
         return (u.cout_stock + u.cout_prod )
 
-    #def entrepot_magasin(self,m:Magasin):
-     #   for e in self.Lentrepot:
+    def cout_entrepot_à_usine(self):
+        return 
 
+
+    def tri_bulles(tab: List[float],site: List) -> List:
+        sites = site.copy()
+        for k in range(len(tab)):
+            print(tab)
+            for j in range(k-1,-1,-1):
+                if tab[j]>tab[k]:
+                    tab[j],tab[k] = tab[k],tab[j]
+                    sites[j],sites[k]=sites[k],sites[j]
+                    k=k-1
+        return (tab,sites)
+
+
+    def entrepot_magasin(self,m:Magasin):
+        list_entrepot = []
+        for e in self.entrepots:
+            list_entrepot.append(e.cout_stock)
+    
+    def cap_restante(self,i):
+        return self.entrepots[i].cap_stock
+        
 a = Entreprise("inst\B7a-sites.txt")
 print(a)
 
