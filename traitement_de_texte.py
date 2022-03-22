@@ -71,7 +71,7 @@ def recup_transport(instance: str)-> List:
 def recup_historique(instance: str):
     
     fichier = instance +'-historiques.txt'
-    historiques: List = []
+    historiques: list = []
     
     with open(fichier, 'r') as f:
         content = f.readlines()
