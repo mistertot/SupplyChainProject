@@ -1,3 +1,4 @@
+from generateur_de_demandes import demande_constante, recup_param
 from magasin import Magasin 
 from typing import List
 from sites import Site
@@ -5,7 +6,7 @@ from usine import Usine
 from entrepot import Entrepot
 from transport import Transport
 from traitement_de_texte import recup_sites
-
+from generateur_de_demandes import instance
 class Entreprise :
 
     def __init__(self, instance : str):
@@ -39,17 +40,22 @@ class Entreprise :
         return sans_entrepot
 
 
-    def production(self) -> int :
+    def production(self) -> List[int] :
+        usi = []
         qte_prod_restante = self.nb_de_commande_total
-        for p in self.usines:
-            prod_non_perdu = min(p.cap_prod,p.cap_stock)
-            if prod_non_perdu<qte_prod_restante:
-                p.prod = prod_non_perdu 
+        for k in range (len(self.usines)):
+            self.usines.append(0)
+            prod_non_perdu = min(self.usine[k].cap_prod,self.usine[k].cap_stock)
+            if prod_non_perdu<qte_prod_restante: #verifie si l'usine peut produire à la qte demandé
+                usi[k]=prod_non_perdu #si non on produit le maximum posible
                 qte_prod_restante = qte_prod_restante - prod_non_perdu 
-            else:
-                p.prod = qte_prod_restante
-        return qte_prod_restante
+            else: #si oui on produit la quantité necessaire
+                usi[k]=qte_prod_restante
+                qte_prod_restante = 0  
+        return usi #renvoie la liste des qte produite pour chaque usine
 
+
+    
     def cout_usine(u:Usine):
         return (u.cout_stock + u.cout_prod )
 
@@ -76,13 +82,29 @@ class Entreprise :
     
     def cap_restante(self,i):
         return self.entrepots[i].cap_stock
+
+
+    def sol(self):
+        L=[]
+        for j in range(recup_param(instance)[0]):
+            L.append([])
+            L[j].append(j+1)
+            L[j].append(self.production)
+        return L
+
+
+
+        
         
 a = Entreprise("inst\B7a")
+print(a.sol())
 #print(a)
 #print(len(a.usines), len(a.magasins), len(a.entrepots))
 #b =Transport(a.instance, 1, 1 + len(a.usines) + len(a.entrepots)).data[1]
 #print(b)        
 print(a.cout_magasin(1,1))
+
+
 
 
 
