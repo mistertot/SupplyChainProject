@@ -69,8 +69,6 @@ class Entreprise :
         return (tab,sites)'''
 
 
-
-
     def entrepot_magasin(self,m:Magasin):
         list_entrepot = []
         for e in self.entrepots:
