@@ -7,10 +7,12 @@ from traitement_de_texte import recup_sites
 
 class Entreprise :
 
-    def __init__(self, path : str):
-        self.usines: List [Usine] = recup_sites(path)[0]
-        self.entrepots: List[Entrepot] = recup_sites(path)[1]
-        self.magasins: List[Magasin] = recup_sites(path)[2]
+    def __init__(self, instance : str):
+        
+        sites: List = recup_sites(instance) 
+        self.usines: List [Usine] = sites[0]
+        self.entrepots: List[Entrepot] = sites[1]
+        self.magasins: List[Magasin] = sites[2]
         
 
     def __repr__(self) -> str:

@@ -40,6 +40,7 @@ def recup_sites(instance: str) -> List:
                 entrepots.append(Entrepot(helpvar[0], helpvar[1], helpvar[2], helpvar[3], helpvar[4], helpvar[5]))
         
         data = [usines, entrepots, magasins]
+        print(len(data[0]))
         return data
 
 def recup_transport(instance: str)-> List:
@@ -70,5 +71,5 @@ print(int(a[1:-1]))
 recup_transport('inst\B6b')
 '''def recup_historique(fichier: str):
 '''
-print(recup_param('inst\A3a'))
+print(recup_param('inst\B6b'))
 print(recup_sites('inst\B6b'))
