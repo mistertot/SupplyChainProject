@@ -7,7 +7,6 @@ def recup_transport(instance: str):
     fichier = instance + '-transport.txt'
     with open(fichier, 'r') as f:
         n = int(findall('\d+', instance)[0])
-        print(n)
         cpt = 0
         capacites = []
         couts = []
@@ -39,8 +38,9 @@ class Transport:
     
 
 
-a = Transport('inst\B6b', 1, 3)
+'''a = Transport('inst\B6b', 1, 3)
 b = Transport('inst\B6b', 1, 4)
-print(a,b, sep = '\n')
+c = Transport('inst\B7a', 1, 4)
+print(a,c, sep = '\n')'''
 
 

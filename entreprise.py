@@ -1,5 +1,6 @@
 from magasin import Magasin 
 from typing import List
+from sites import Site
 from usine import Usine
 from entrepot import Entrepot
 from transport import Transport
@@ -9,11 +10,12 @@ class Entreprise :
 
     def __init__(self, instance : str):
         
+        self.instance : str = instance
         sites: List = recup_sites(instance) 
         self.usines: List [Usine] = sites[0]
         self.entrepots: List[Entrepot] = sites[1]
         self.magasins: List[Magasin] = sites[2]
-        
+
 
     def __repr__(self) -> str:
         return "( entreprise: {0}; {1}; {2} ".format(self.usines,self.entrepots,self.magasins) 
@@ -23,6 +25,18 @@ class Entreprise :
         for k in range (len(self.magasins)):
             com_tot = com_tot + self.Lcommande[k].commande 
         return com_tot
+
+    def cout_magasin(self, ordre_usine: int, ordre_magasin: int):
+        '''l'ordre c'est l'ordre reel et non pas la position dans la liste'''
+        #le 1er c'est 1 et non pas 0 (bisous)
+        cout_transport: float = Transport(self.instance, ordre_usine, ordre_magasin + len(self.usines) + len(self.entrepots)).data[1]
+
+        print(cout_transport)
+        sans_entrepot: float = self.usines[ordre_usine-1].cout_prod + self.magasins[ordre_magasin-1].cout_stock + self.usines[ordre_usine-1].cout_stock + cout_transport
+        
+        #print("1: {0}, 2: {1}, 3: {2}, 4: {3}".format(self.usines[ordre_usine-1].cout_prod, self.magasins[ordre_magasin-1].cout_stock , self.usines[ordre_usine-1].cout_stock, cout_transport))
+        
+        return sans_entrepot
 
 
     def production(self) -> int :
@@ -43,7 +57,7 @@ class Entreprise :
         return 
 
 
-    def tri_bulles(tab: List[float],site: List) -> List:
+    '''def tri_bulles(tab: List[float],site: List) -> List:
         sites = site.copy()
         for k in range(len(tab)):
             print(tab)
@@ -52,7 +66,9 @@ class Entreprise :
                     tab[j],tab[k] = tab[k],tab[j]
                     sites[j],sites[k]=sites[k],sites[j]
                     k=k-1
-        return (tab,sites)
+        return (tab,sites)'''
+
+
 
 
     def entrepot_magasin(self,m:Magasin):
@@ -63,8 +79,12 @@ class Entreprise :
     def cap_restante(self,i):
         return self.entrepots[i].cap_stock
         
-a = Entreprise("inst\B7a-sites.txt")
-print(a)
+a = Entreprise("inst\B7a")
+#print(a)
+#print(len(a.usines), len(a.magasins), len(a.entrepots))
+#b =Transport(a.instance, 1, 1 + len(a.usines) + len(a.entrepots)).data[1]
+#print(b)        
+print(a.cout_magasin(1,1))
 
 
 

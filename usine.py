@@ -43,7 +43,7 @@ class Usine(Site):
 
 b = [100, 1.0, 100, 0.2, 50, 50]
 a = Usine(b[0], b[1], b[2], b[3], b[4], b[5])
-print(a)
+#print(a)
 
     
 

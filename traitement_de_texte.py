@@ -66,10 +66,37 @@ def recup_transport(instance: str)-> List:
         return(data)
 
 
+
+
+def recup_historique(instance: str):
+    
+    fichier = instance +'-historiques.txt'
+    historiques: List = []
+    
+    with open(fichier, 'r') as f:
+        content = f.readlines()
+        for elt in content:
+            hist: list = []
+            print(elt)
+            helpvar = elt.split(',')
+            print(helpvar)
+            n = len(helpvar)
+            print(n)
+            for i in range(n):                   
+                hist.append(int(helpvar[i]))
+                print(hist)
+            historiques.append(hist)
+
+    return(historiques)
+
+recup_historique('inst\A6a')
+
+
+
+
 a = 'C1334a'
-print(int(a[1:-1]))
-recup_transport('inst\B6b')
-'''def recup_historique(fichier: str):
-'''
-print(recup_param('inst\B6b'))
-print(recup_sites('inst\B6b'))
+#print(int(a[1:-1]))
+#print(recup_transport('inst\B7a'))
+
+#print(recup_param('inst\B6b'))
+#print(recup_sites('inst\B6b'))

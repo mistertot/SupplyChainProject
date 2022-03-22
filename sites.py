@@ -1,5 +1,6 @@
 
 
+
 class Site:
     '''Classe representant un site, qui pourrait etre une usine, en entrepot ou un magasin'''
     def __init__(self,cap_prod: int ,cout_prod: float ,cap_stock : int, cout_stock : float
@@ -11,3 +12,6 @@ class Site:
         self.cout_stock : float = cout_stock #4 
         self.stock_int : int = stock_int #5
         self.stock_fin : int = stock_fin #6
+    
+    def stock_actuel(self):
+        pass
