@@ -18,7 +18,9 @@ class Probleme:
 
     def __init__(self, instance: str) -> None:
         '''Résout l'instance indiquée.'''
-        pass #TODO
+        file: str = instance +'.sol'
+        with open(file, 'w') as f:
+            f.write(" Thomas, continue ici bisous good luck ")
 
 ## -----------------------------------------------------------------------------
 if __name__ == "__main__":
