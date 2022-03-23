@@ -5,8 +5,8 @@ from sites import Site
 from usine import Usine
 from entrepot import Entrepot
 from transport import Transport
-import traitement_de_texte
-from generateur_de_demandes import instance
+import traitement_de_texte 
+
 class Entreprise :
 
     def __init__(self, instance : str):
@@ -24,7 +24,7 @@ class Entreprise :
     def nb_de_commande_total(self):
         com_tot = 0
         for k in range (len(self.magasins)):
-            com_tot = com_tot + self.magasins[k].commande 
+            com_tot = com_tot + self.magasins[k].commande()
         return com_tot
 
     def cout_magasin(self, ordre_usine: int, ordre_magasin: int):
@@ -42,10 +42,10 @@ class Entreprise :
 
     def production(self) -> List[int] :
         usi = []
-        qte_prod_restante = self.nb_de_commande_total
+        qte_prod_restante = self.nb_de_commande_total()
         for k in range (len(self.usines)):
             self.usines.append(0)
-            prod_non_perdu = min(self.usine[k].cap_prod,self.usine[k].cap_stock)
+            prod_non_perdu = min(int(self.usines[k].cap_prod),int(self.usines[k].cap_stock))
             if prod_non_perdu<qte_prod_restante: #verifie si l'usine peut produire à la qte demandé
                 usi[k]=prod_non_perdu #si non on produit le maximum posible
                 qte_prod_restante = qte_prod_restante - prod_non_perdu 
@@ -104,6 +104,48 @@ class Entreprise :
                     p[u] = 0
         return tr
 
+    def cout_prod_tot(self):
+        cprod = 0
+        for p in range(len(self.production())):
+            cprod = cprod + self.production()[p]*self.usines.cout_prod()
+        return cprod
+
+    def arrive_stock(self,i:int):
+        a = 0
+        for k in range (len(self.trans())):
+            a = a + self.trans()[k][i]
+        return a
+
+    def depart_stock(self,i:int):
+        d = 0
+        for k in range (len(self.trans())):
+            d = d + self.trans()[i][k]
+        return d 
+
+
+
+    def stock_sites(self):
+        l = [[]]
+        nbu = len(self.usines)
+        nbe = len(self.entrepots)
+        nbm = len(self.magasins)
+        nbs = nbu+nbe+nbm
+        for u in range (nbu):
+            l[0].append(self.usines[u].stock_int)
+        for e in range (nbe):
+            l[0].append(self.entrepots[e].stock_int)
+        for m in range (nbm):
+            l[0].append(self.magasins[m].stock_int)
+        for j in range(1,100):
+            cop = l[j-1].copy()
+            for k in range(nbs):
+                cop[k]= cop[k] + self.arrive_stock(k) - self.depart_stock(k)
+            for ma in range (nbu+nbe,nbs):
+                cop[ma] = cop[ma]- self.magasins[ma-(nbu+nbe)].commande()
+            l.append(cop)
+        return(l)
+
+                
 
 
 
@@ -111,21 +153,24 @@ class Entreprise :
 
 
 
+    def sol(self): 
+        L = [] 
+        for j in range(6): 
+            L.append([]) 
+            L[j].append(j) 
+            L[j].append(self.production) 
+        return L 
 
-    def sol(self):
-        L = []
-        for j in (1, traitement_de_texte.recup_param(instance)[0]+1):
-            L.append([])
-            L[j].append(j)
-            L[j].append(self.production)
-        return L
 
 
 
         
         
 a = Entreprise("inst\C6b")
+print ("solution:")
 print(a.sol())
+print ("prod:")
+print(a.production())
 #print(a)
 #print(len(a.usines), len(a.magasins), len(a.entrepots))
 #b =Transport(a.instance, 1, 1 + len(a.usines) + len(a.entrepots)).data[1]
