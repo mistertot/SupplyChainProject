@@ -24,7 +24,7 @@ class Entreprise :
     def nb_de_commande_total(self):
         com_tot = 0
         for k in range (len(self.magasins)):
-            com_tot = com_tot + self.Lcommande[k].commande 
+            com_tot = com_tot + self.magasins[k].commande 
         return com_tot
 
     def cout_magasin(self, ordre_usine: int, ordre_magasin: int):
@@ -83,6 +83,34 @@ class Entreprise :
     def cap_restante(self,i):
         return self.entrepots[i].cap_stock
 
+    def trans(self):
+        nbu = len(self.usines)
+        nbe = len(self.entrepots)
+        nbm = len(self.magasins)
+        nbs = nbu+nbe+nbm
+        tr = []
+        for i in range(nbs):
+            tr.append([])
+            for j in range (nbs):
+                tr[i].append(0)
+        p = self.production().copy()
+        for u in range (nbu):
+            for m in range (nbu+nbe,nbs):
+                if self.magasins[m-nbu-nbe].commande()<p[u]:
+                    tr[u,m].append(self.magasins[m-nbu-nbe].commande())
+                    p[u] = p[u] - self.magasins[m-nbu-nbe].commande()
+                else:
+                    tr[u,m].append(p[u])
+                    p[u] = 0
+        return tr
+
+
+
+
+
+
+
+
 
     def sol(self):
         L=[]
@@ -96,13 +124,13 @@ class Entreprise :
 
         
         
-a = Entreprise("inst\B7a")
+a = Entreprise("inst\C6b")
 print(a.sol())
 #print(a)
 #print(len(a.usines), len(a.magasins), len(a.entrepots))
 #b =Transport(a.instance, 1, 1 + len(a.usines) + len(a.entrepots)).data[1]
 #print(b)        
-print(a.cout_magasin(1,1))
+#print(a.cout_magasin(1,1))
 
 
 
