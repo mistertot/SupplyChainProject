@@ -5,7 +5,12 @@ from sites import Site
 from usine import Usine
 from entrepot import Entrepot
 from transport import Transport
+<<<<<<< Updated upstream
 import traitement_de_texte 
+=======
+from traitement_de_texte import recup_sites
+from generateur_de_demandes import demande_constante
+>>>>>>> Stashed changes
 
 class Entreprise :
 
@@ -20,6 +25,14 @@ class Entreprise :
 
     def __repr__(self) -> str:
         return "( entreprise: {0}; {1}; {2} ".format(self.usines,self.entrepots,self.magasins) 
+    
+    def vente(self, jour: int):
+        return demande_constante(self.instance)[jour-1]
+    
+
+
+
+
     
     def nb_de_commande_total(self):
         com_tot = 0

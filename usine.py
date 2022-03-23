@@ -14,12 +14,18 @@ class Usine(Site):
         return "( Usine : {0}; {1}; {2}; {3}; {4}; {5} )".format(self.cap_prod, self.cout_prod,
          self.cap_stock, self.cout_stock, self.stock_int, self.stock_fin)
 
-    def production(self, magasins: Magasin) -> int :
-        if self.cap_prod <magasins.commande():
+    def peut_produire(self, quantite: int) -> bool:
+        return  self.cap_prod <=  quantite
+    
+    def production(self, quantite: int) -> bool :
+        if self.peut_produire(quantite):
             return self.cap_prod
         return magasins.commande()
 
-    def stock(self, magasin: Magasin) -> int: # definir un stock actuel (état des stock)
+    
+
+
+    # def stock(self, magasin: Magasin) -> int: # definir un stock actuel (état des stock)
         
         return self.stock + self.production(magasin)
 
