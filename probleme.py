@@ -20,8 +20,9 @@ class Probleme:
         '''Résout l'instance indiquée.'''
         file: str = instance +'.sol'
         with open(file, 'w') as f:
-            for i in range(traitement_de_texte.recup_param(instance)[0]):
-                f.write(i)
+            for i in range(1, traitement_de_texte.recup_param(instance)[0]+1):
+                f.writelines(str(i) + ';' + str('production de l usine') + ';' + str('transports séparés par \t') + ';' + 
+                str('ventes prévues') + ';' + str('cout tot prod') + ';' + str('cout tot stockage') + ';' + str('cout tot transport') + '\n')
 
 ## -----------------------------------------------------------------------------
 if __name__ == "__main__":
