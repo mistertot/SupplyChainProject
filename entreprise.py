@@ -5,14 +5,14 @@ from sites import Site
 from usine import Usine
 from entrepot import Entrepot
 from transport import Transport
-from traitement_de_texte import recup_sites
+import traitement_de_texte
 from generateur_de_demandes import instance
 class Entreprise :
 
     def __init__(self, instance : str):
         
         self.instance : str = instance
-        sites: List = recup_sites(instance) 
+        sites: List = traitement_de_texte.recup_sites(instance) 
         self.usines: List [Usine] = sites[0]
         self.entrepots: List[Entrepot] = sites[1]
         self.magasins: List[Magasin] = sites[2]
@@ -113,10 +113,10 @@ class Entreprise :
 
 
     def sol(self):
-        L=[]
-        for j in range(recup_param(instance)[0]):
+        L = []
+        for j in (1, traitement_de_texte.recup_param(instance)[0]+1):
             L.append([])
-            L[j].append(j+1)
+            L[j].append(j)
             L[j].append(self.production)
         return L
 
