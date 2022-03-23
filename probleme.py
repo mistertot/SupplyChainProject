@@ -9,7 +9,7 @@ Rappels :
 - Exécutez checker.py pour bénéficier du checker
 - Configurer le checker via CONFIG, ne modifiez ni checker.py ni checker.exe
 '''
-
+import traitement_de_texte
 import os.path
 
 ## -----------------------------------------------------------------------------
@@ -20,7 +20,8 @@ class Probleme:
         '''Résout l'instance indiquée.'''
         file: str = instance +'.sol'
         with open(file, 'w') as f:
-            f.write(" Thomas, continue ici bisous good luck ")
+            for i in range(traitement_de_texte.recup_param(instance)[0]):
+                f.write(i)
 
 ## -----------------------------------------------------------------------------
 if __name__ == "__main__":
