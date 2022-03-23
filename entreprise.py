@@ -145,7 +145,20 @@ class Entreprise :
             l.append(cop)
         return(l)
 
-                
+    def cout_total_stock(self,j:int):
+        cst =0
+        for k in range (len(self.stock_sites()[0])):
+            cst = cst + self.stock_sites()[i][k]
+        return cst
+    def cout_trij(i,j):
+        return (5)
+
+    def cout_trans(self):
+        ctrans = 0
+        for i in range(len(self.trans())):
+            for j in range(len(self.trans())):
+                ctrans = ctrans + self.trans()[i][j]*self.cout_trij
+        return(ctrans)
 
 
 
