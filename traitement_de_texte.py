@@ -1,3 +1,4 @@
+import re
 from typing import List
 from magasin import Magasin
 from usine import Usine
@@ -66,8 +67,6 @@ def recup_transport(instance: str)-> List:
         return(data)
 
 
-
-
 def recup_historique(instance: str):
     
     fichier = instance +'-historiques.txt'
@@ -92,9 +91,27 @@ def recup_historique(instance: str):
 recup_historique('inst\A6a')
 
 
+class Stockage_de_donnee :
+    def __init__(self,instance : str) -> None:
+        self.historique = recup_historique(instance)
+        self.transport = recup_transport(instance)
+        self.sites = recup_sites(instance)
+        self.paramétre = recup_param(instance)
+        
+    def hist(self):
+        return self.historique
+
+    def transp(self):
+        return self.transport
+
+    def sit(self): 
+        return self.sites
+
+    def parametre(self):
+        return self.paramétre
 
 
-a = 'C1334a'
+# a = 'C1334a'
 #print(int(a[1:-1]))
 #print(recup_transport('inst\B7a'))
 
