@@ -112,17 +112,17 @@ class Entreprise :
         for u in range (nbu):
             for m in range (nbu+nbe,nbs):
                 if self.commande(m-nbu-nbe)<p[u]:
-                    tr[u][m].append(self.commande(m-nbu-nbe))
+                    tr[u][m]=self.commande(m-nbu-nbe)
                     p[u] = p[u] - self.commande(m-nbu-nbe)
                 else:
-                    tr[u][m].append(p[u])
+                    tr[u][m]=p[u]
                     p[u] = 0
         return tr
 
     def cout_prod_tot(self):
         cprod = 0
         for p in range(len(self.production())):
-            cprod = cprod + self.production()[p]*self.usines[p].cout_prod()
+            cprod = cprod + self.production()[p]*self.usines[p].cout_prod
         return cprod
 
     def arrive_stock(self,i:int):
@@ -156,7 +156,7 @@ class Entreprise :
             for k in range(nbs):
                 cop[k]= cop[k] + self.arrive_stock(k) - self.depart_stock(k)
             for ma in range (nbu+nbe,nbs):
-                cop[ma] = cop[ma]- self.magasins[ma-(nbu+nbe)].commande()
+                cop[ma] = cop[ma]- self.commande(ma-(nbu+nbe))
             l.append(cop)
         return(l)
 
@@ -165,14 +165,13 @@ class Entreprise :
         for k in range (len(self.stock_sites()[0])):
             cst = cst + self.stock_sites()[j][k]
         return cst
-    def cout_trij(i,j):
-        return (5)
+
 
     def cout_trans(self):
         ctrans = 0
         for i in range(len(self.trans())):
             for j in range(len(self.trans())):
-                ctrans = ctrans + self.trans()[i][j]*self.cout_trij
+                ctrans = ctrans + self.trans()[i][j]*self.transportt[i][j][1]
         return(ctrans)
 
 
@@ -189,7 +188,7 @@ class Entreprise :
             L[-1].append(ltr)
             L[-1].append(self.liste_com())
             L[-1].append(self.cout_prod_tot())
-            L[-1].append(self.cout_total_stock())
+            L[-1].append(self.cout_total_stock(j))
             L[-1].append(self.cout_trans())
         return L 
 
