@@ -26,8 +26,9 @@ class Probleme:
                 f.write(str(i[0]) + ';')
                 for j in i[1]:
                     f.write(str(j) + ';')
-                for j in i[2]:
-                    f.write(str(j) + '\t')
+                for j in range(len(i[2])-1):
+                    f.write(str(i[2][j]) + '\t')
+                f.write(str(i[2][len(i[2])]) + ';')
                 for j in i[3]:
                     f.write(str(j) + ';')
                 for j in range(4, 7):
