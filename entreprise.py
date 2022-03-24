@@ -1,16 +1,13 @@
-from generateur_de_demandes import demande_constante, recup_param
+from generateur_de_demandes import recup_param
 from magasin import Magasin 
 from typing import List
 from sites import Site
 from usine import Usine
 from entrepot import Entrepot
 from transport import Transport
-<<<<<<< Updated upstream
-import traitement_de_texte 
-=======
 from traitement_de_texte import recup_sites
-from generateur_de_demandes import demande_constante
->>>>>>> Stashed changes
+import traitement_de_texte
+
 
 class Entreprise :
 
@@ -39,6 +36,12 @@ class Entreprise :
         for k in range (len(self.magasins)):
             com_tot = com_tot + self.magasins[k].commande()
         return com_tot
+
+    def liste_com(self):
+        lst_com = []
+        for k in range(len(self.magasins)):
+            lst_com.append(self.magasins[k].commande())
+        return lst_com
 
     def cout_magasin(self, ordre_usine: int, ordre_magasin: int):
         '''l'ordre c'est l'ordre reel et non pas la position dans la liste'''
@@ -120,7 +123,7 @@ class Entreprise :
     def cout_prod_tot(self):
         cprod = 0
         for p in range(len(self.production())):
-            cprod = cprod + self.production()[p]*self.usines.cout_prod()
+            cprod = cprod + self.production()[p]*self.usines[p].cout_prod()
         return cprod
 
     def arrive_stock(self,i:int):
@@ -175,22 +178,23 @@ class Entreprise :
 
 
 
-
-
-
-
     def sol(self): 
         L = [] 
         for j in range(6): 
             L.append([]) 
             L[j].append(j) 
-            L[j].append(self.production) 
+            L[j].append(self.production()) 
+            ltr = []
+            for k in self.trans():
+                ltr = ltr + k
+            L[j].append(ltr)
+            L[j].append(self.liste_com())
+            L[j].append(self.cout_prod_tot())
+            L[j].append(self.cout_total_stock())
+            L[j].append(self.cout_trans())
         return L 
 
 
-
-
-        
         
 a = Entreprise("inst\C6b")
 print ("solution:")
