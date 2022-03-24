@@ -42,7 +42,7 @@ class Entreprise :
     def liste_com(self):
         lst_com = []
         for k in range(len(self.magasins)):
-            lst_com.append(self.commande(k))
+            lst_com.append(int(self.commande(k))+1)
         return lst_com
 
     def cout_magasin(self, ordre_usine: int, ordre_magasin: int):
@@ -155,6 +155,8 @@ class Entreprise :
             cop = l[j-1].copy()
             for k in range(nbs):
                 cop[k]= cop[k] + self.arrive_stock(k) - self.depart_stock(k)
+            for us in range(nbu):
+                cop[us] = cop[us] + self.production()[us]
             for ma in range (nbu+nbe,nbs):
                 cop[ma] = cop[ma]- self.commande(ma-(nbu+nbe))
             l.append(cop)
@@ -194,7 +196,7 @@ class Entreprise :
 
 
         
-a = Entreprise("inst\C6b")
+a = Entreprise("inst\B3b")
 print ("solution:")
 print(a.sol())
 print ("prod:")
