@@ -1,14 +1,13 @@
-from generateur_de_demandes import recup_param
+from generateur_de_demandes import recup_param , recup_historique
 from magasin import Magasin 
 from typing import List
 from sites import Site
 from usine import Usine
 from entrepot import Entrepot
 from transport import Transport
-from traitement_de_texte import recup_sites
+from traitement_de_texte import recup_sites, recup_transport
+from traitement_de_texte import Stockage_de_donnee
 import traitement_de_texte
-
-
 class Entreprise :
 
     def __init__(self, instance : str):
@@ -18,29 +17,32 @@ class Entreprise :
         self.usines: List [Usine] = sites[0]
         self.entrepots: List[Entrepot] = sites[1]
         self.magasins: List[Magasin] = sites[2]
+        self.historique = recup_historique(instance)
+        self.horizon: int = recup_param(instance)[0]
+        self.prix: float = recup_param(instance)[1]
+        self.transportt = traitement_de_texte.recup_transport(instance)
 
+    
+    def commande (self,m) -> int :
+        compteur : int = 0 
+        for k in range(len(self.historique[m])):
+            compteur = compteur + self.historique[m][k]
+        return compteur/len(self.historique[m]) 
 
     def __repr__(self) -> str:
         return "( entreprise: {0}; {1}; {2} ".format(self.usines,self.entrepots,self.magasins) 
-    
-    def vente(self, jour: int):
-        return demande_constante(self.instance)[jour-1]
-    
-
-
-
 
     
     def nb_de_commande_total(self):
         com_tot = 0
         for k in range (len(self.magasins)):
-            com_tot = com_tot + self.magasins[k].commande()
+            com_tot = com_tot + self.commande(k)
         return com_tot
 
     def liste_com(self):
         lst_com = []
         for k in range(len(self.magasins)):
-            lst_com.append(self.magasins[k].commande())
+            lst_com.append(self.commande(k))
         return lst_com
 
     def cout_magasin(self, ordre_usine: int, ordre_magasin: int):
@@ -60,13 +62,12 @@ class Entreprise :
         usi = []
         qte_prod_restante = self.nb_de_commande_total()
         for k in range (len(self.usines)):
-            self.usines.append(0)
             prod_non_perdu = min(int(self.usines[k].cap_prod),int(self.usines[k].cap_stock))
             if prod_non_perdu<qte_prod_restante: #verifie si l'usine peut produire à la qte demandé
-                usi[k]=prod_non_perdu #si non on produit le maximum posible
+                usi.append(prod_non_perdu) #si non on produit le maximum posible
                 qte_prod_restante = qte_prod_restante - prod_non_perdu 
             else: #si oui on produit la quantité necessaire
-                usi[k]=qte_prod_restante
+                usi.append(qte_prod_restante)
                 qte_prod_restante = 0  
         return usi #renvoie la liste des qte produite pour chaque usine
 
@@ -75,8 +76,6 @@ class Entreprise :
     def cout_usine(u:Usine):
         return (u.cout_stock + u.cout_prod )
 
-    def cout_entrepot_à_usine(self):
-        return 
 
 
     '''def tri_bulles(tab: List[float],site: List) -> List:
@@ -112,11 +111,11 @@ class Entreprise :
         p = self.production().copy()
         for u in range (nbu):
             for m in range (nbu+nbe,nbs):
-                if self.magasins[m-nbu-nbe].commande()<p[u]:
-                    tr[u,m].append(self.magasins[m-nbu-nbe].commande())
-                    p[u] = p[u] - self.magasins[m-nbu-nbe].commande()
+                if self.commande(m-nbu-nbe)<p[u]:
+                    tr[u][m].append(self.commande(m-nbu-nbe))
+                    p[u] = p[u] - self.commande(m-nbu-nbe)
                 else:
-                    tr[u,m].append(p[u])
+                    tr[u][m].append(p[u])
                     p[u] = 0
         return tr
 
@@ -152,7 +151,7 @@ class Entreprise :
             l[0].append(self.entrepots[e].stock_int)
         for m in range (nbm):
             l[0].append(self.magasins[m].stock_int)
-        for j in range(1,100):
+        for j in range(1,self.horizon):
             cop = l[j-1].copy()
             for k in range(nbs):
                 cop[k]= cop[k] + self.arrive_stock(k) - self.depart_stock(k)
@@ -164,7 +163,7 @@ class Entreprise :
     def cout_total_stock(self,j:int):
         cst =0
         for k in range (len(self.stock_sites()[0])):
-            cst = cst + self.stock_sites()[i][k]
+            cst = cst + self.stock_sites()[j][k]
         return cst
     def cout_trij(i,j):
         return (5)
@@ -180,18 +179,18 @@ class Entreprise :
 
     def sol(self): 
         L = [] 
-        for j in range(6): 
+        for j in range(self.horizon): 
             L.append([]) 
-            L[j].append(j) 
-            L[j].append(self.production()) 
+            L[-1].append(j) 
+            L[-1].append(self.production()) 
             ltr = []
             for k in self.trans():
                 ltr = ltr + k
-            L[j].append(ltr)
-            L[j].append(self.liste_com())
-            L[j].append(self.cout_prod_tot())
-            L[j].append(self.cout_total_stock())
-            L[j].append(self.cout_trans())
+            L[-1].append(ltr)
+            L[-1].append(self.liste_com())
+            L[-1].append(self.cout_prod_tot())
+            L[-1].append(self.cout_total_stock())
+            L[-1].append(self.cout_trans())
         return L 
 
 
