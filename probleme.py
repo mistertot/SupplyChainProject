@@ -9,8 +9,9 @@ Rappels :
 - Exécutez checker.py pour bénéficier du checker
 - Configurer le checker via CONFIG, ne modifiez ni checker.py ni checker.exe
 '''
-import traitement_de_texte
+
 import os.path
+from entreprise import *
 
 ## -----------------------------------------------------------------------------
 class Probleme:
@@ -20,9 +21,19 @@ class Probleme:
         '''Résout l'instance indiquée.'''
         file: str = instance +'.sol'
         with open(file, 'w') as f:
-            for i in range(1, traitement_de_texte.recup_param(instance)[0]+1):
-                f.writelines(str(i) + ';' + str('production de l usine') + ';' + str('transports séparés par \t') + ';' + 
-                str('ventes prévues') + ';' + str('cout tot prod') + ';' + str('cout tot stockage') + ';' + str('cout tot transport') + '\n')
+            data = Entreprise(instance).sol()
+            for i in data:
+                f.write(str(i[0]) + ';')
+                for j in i[1]:
+                    f.write(str(j) + ';')
+                for j in i[2]:
+                    f.write(str(j) + '\t')
+                for j in i[3]:
+                    f.write(str(j) + ';')
+                for j in range(4, 7):
+                    f.write(str(i[j]) + ';')
+                f.write(str[i][7] + '\n')
+
 
 ## -----------------------------------------------------------------------------
 if __name__ == "__main__":

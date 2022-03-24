@@ -8,6 +8,7 @@ from transport import Transport
 from traitement_de_texte import recup_sites, recup_transport
 from traitement_de_texte import Stockage_de_donnee
 import traitement_de_texte
+
 class Entreprise :
 
     def __init__(self, instance : str):
@@ -50,7 +51,7 @@ class Entreprise :
         #le 1er c'est 1 et non pas 0 (bisous)
         cout_transport: float = Transport(self.instance, ordre_usine, ordre_magasin + len(self.usines) + len(self.entrepots)).data[1]
 
-        print(cout_transport)
+        # print(cout_transport)
         sans_entrepot: float = self.usines[ordre_usine-1].cout_prod + self.magasins[ordre_magasin-1].cout_stock + self.usines[ordre_usine-1].cout_stock + cout_transport
         
         #print("1: {0}, 2: {1}, 3: {2}, 4: {3}".format(self.usines[ordre_usine-1].cout_prod, self.magasins[ordre_magasin-1].cout_stock , self.usines[ordre_usine-1].cout_stock, cout_transport))
@@ -199,8 +200,8 @@ class Entreprise :
 a = Entreprise("inst\B3b")
 print ("solution:")
 print(a.sol())
-print ("prod:")
-print(a.production())
+# print ("prod:")
+# print(a.production())
 #print(a)
 #print(len(a.usines), len(a.magasins), len(a.entrepots))
 #b =Transport(a.instance, 1, 1 + len(a.usines) + len(a.entrepots)).data[1]
