@@ -22,19 +22,18 @@ class Probleme:
         file: str = instance +'.sol'
         with open(file, 'w') as f:
             data = Entreprise(instance).sol()
-            f.write(str(data))
-            #for i in data:
-            #    f.write(str(i[0]) + ';')
-             #   for j in i[1]:
-              #      f.write(str(j) + ';')
-               # for j in range(len(i[2])-1):
-                #    f.write(str(i[2][j]) + '\t')
-            #    f.write(str(i[2][len(i[2])]) + ';')
-             #   for j in i[3]:
-              #      f.write(str(j) + ';')
-               # for j in range(4, 7):
-                #    f.write(str(i[j]) + ';')
-                #f.write(str[i][6] + '\n')
+            for i in data:
+                f.write(str(i[0]) + ';')
+                for j in i[1]:
+                    f.write(str(j) + ';')
+                for j in range(len(i[2])-1):
+                    f.write(str(i[2][j]) + '\t')
+                f.write(str(i[2][len(i[2])]) + ';')
+                for j in i[3]:
+                    f.write(str(j) + ';')
+                for j in range(4, 7):
+                    f.write(str(i[j]) + ';')
+                f.write(str[i][6] + '\n')
 
 
 ## -----------------------------------------------------------------------------

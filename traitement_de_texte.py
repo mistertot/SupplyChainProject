@@ -49,7 +49,7 @@ def recup_transport(instance: str)-> List:
     fichier = instance + '-transport.txt'
     with open(fichier, 'r') as f:
         L = findall('\d+', instance)
-        print(L)
+        #print(L)
         n = int(findall('\d+', instance)[0])
         #print(n)
         cpt = 0
@@ -90,7 +90,7 @@ def recup_historique(instance: str):
 
     return(historiques)
 
-print('recup_historique',recup_historique('inst\A6a'))
+#print('recup_historique',recup_historique('inst\A6a'))
 
 
 class Stockage_de_donnee :
@@ -115,7 +115,7 @@ class Stockage_de_donnee :
 
 # a = 'C1334a'
 #print(int(a[1:-1]))
-print('recup_transport', recup_transport('inst\A6a'))
+#print('recup_transport', recup_transport('inst\A6a'))
 
 #print(recup_param('inst\B6b'))
 #print(recup_sites('inst\B6b'))

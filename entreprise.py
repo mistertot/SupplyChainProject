@@ -198,9 +198,7 @@ class Entreprise :
     
 
 
-start = time.time()
-a = Entreprise("inst\B6a")
-print ("solution:")
+a = Entreprise("inst\B3b")
 print(a.sol())
 end = time.time()
 print ("prod:")

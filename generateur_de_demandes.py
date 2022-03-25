@@ -19,14 +19,14 @@ def recup_historique(instance: str):
         content = f.readlines()
         for elt in content:
             hist: list = []
-            print(elt)
+            #print(elt)
             helpvar = elt.split(',')
-            print(helpvar)
+            #print(helpvar)
             n = len(helpvar)
-            print(n)
+            #print(n)
             for i in range(n):                   
                 hist.append(int(helpvar[i]))
-                print(hist)
+                #print(hist)
             historiques.append(hist)
 
     return(historiques)
@@ -53,5 +53,5 @@ def d(instance: str, ordre_magasin: int) -> list[int]:
 
 
 
-print("that's it", d('inst\B6a', 1))
-print('opla ', recup_historique('inst\B6a'))
+#print("that's it", d('inst\B6a', 1))
+#print('opla ', recup_historique('inst\B6a'))
