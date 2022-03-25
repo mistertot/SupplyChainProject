@@ -108,11 +108,11 @@ La méthode :
 \item \emph{commande\_totale()} renvoie la somme des moyennes des demandes.
 \item \emph{production()} se base sur notre stratégie de production. Pour chaque usine, elle calcule la quantité maxmimale qui peut être produite sans perte. Elle renvoie les quantités produites par chaque usine.
 \item \emph{trans()} crée une matrice de taille $n\times n$ (n : nombre de sites). Selon la demande de chaque magasin, on transporte une certaine quantité. La logique est linéaire : le transport de la quantité produite vers la quantité demandée se fait dans l'ordre des usines et des magasins.
-\item \emph{liste\_com()} renvoie les commandes prévues pour chaque magasin
-\item \emph{cout\_prod\_tot()} renvoie le coût total de production du jour
-\item \emph{stock\_sites()} rend compte de l'état des stocks de chaque site jour après jour
-\item \emph{cout\_total\_stock()} renvoie le cout total du stock du jour 
-\item\emph{cout\_trans()} renvoie le cout total de transport du jour
+\item \emph{liste\_com()} renvoie les commandes prévues pour chaque magasin.
+\item \emph{cout\_prod\_tot()} renvoie le coût total de production du jour.
+\item \emph{stock\_sites()} rend compte de l'état des stocks de chaque site jour après jour.
+\item \emph{cout\_total\_stock()} renvoie le cout total du stock du jour.
+\item\emph{cout\_trans()} renvoie le cout total de transport du jour.
 \end{itemize}
 
 %************************************************************%
@@ -129,7 +129,7 @@ En exécutant le fichier \emph{checker.py} pour l'instance \emph{A3b}, nous obte
     \label{fig:checker} % crée un label pour pouvoir y faire référence plus tard
 \end{figure}
 
-Les résultats obtenus sont le reflet de notre première solution : comme celle-ci réagit de manière linéaire et sans recul, nous obtenons des bilans qui peuvent parfois poser problème. De plus, notre programme met nettement plus de temps à s'exécuter que les 10 secondes exigées. Malgré tout, nous parvenons à obtenir des résultats pour chaque instance.
+Les résultats obtenus sont le reflet de notre première solution : comme celle-ci réagit de manière linéaire et sans recul, nous obtenons des bilans qui peuvent parfois poser problème. De plus, notre programme met nettement plus de temps à s'exécuter que les 10 secondes exigées. Malgré tout, nous parvenons à obtenir des résultats pour chaque instance, et acceptables pour de petits problèmes.
 %----------------------------%
 \subsection{Limites et améliorations possibles}
 Notre première solution a pu être correctement implémentée et fonctionne. En revanche, cette méthode ne permet pas d'aboutir à de bonnes combinaisons entre sites car elle est triviale.
