@@ -11,11 +11,8 @@ import traitement_de_texte
 import time
 
 
-
-
-
 class Entreprise :
-    ''' Classe modelisant une entreprise qui contient toutes les'''
+
     def __init__(self, instance : str):
         
         self.instance : str = instance
@@ -27,43 +24,10 @@ class Entreprise :
         self.horizon: int = recup_param(instance)[0]
         self.prix: float = recup_param(instance)[1]
         self.transportt = traitement_de_texte.recup_transport(instance)
-        self.nbusines = len(self.usines)
-        self.nbentropots = len(self.entrepots)
-        self.nbmagasins = len(self.magasins)
 
-    def fct(self):
-        L = []
-        tran = self.transportt
-        n = len(tran)
-        m = len(tran[0])
-        for i in range(n):
-            for j in range(m):
-                if tran[i][j][1] > 0:
-                    a = (i, j, tran[i][j][1])
-                    L.append(a)
-        return L
-
-    def cout(self):
-        L=[]
-        a = self.fct()
-        for elt in a:
-            pass
-
-
-
-
-
-    def chemins(self):
-        L = []
-        n = len(self.transportt)
-        m = len(self.transportt[0])
-        for i in range(n):
-            for j in range(m):
-                chem = self.chemin()
-        pass
-
-
+    
     def commande (self,m) -> int :
+        'A partir de l historique on renvoie la commande moyenne du magasin m'
         compteur : int = 0 
         for k in range(len(self.historique[m])):
             compteur = compteur + self.historique[m][k]
@@ -74,12 +38,14 @@ class Entreprise :
 
     
     def nb_de_commande_total(self):
+        'calcule la quantite total des commandes de l ensemble des magasin'
         com_tot = 0
         for k in range (len(self.magasins)):
             com_tot = com_tot + self.commande(k)
         return com_tot
 
     def liste_com(self):
+        'renvoie la liste de commande de chaque magasin'
         lst_com = []
         for k in range(len(self.magasins)):
             lst_com.append(self.commande(k))
@@ -99,6 +65,7 @@ class Entreprise :
 
 
     def production(self) -> List[int] :
+        'renvoie la liste de la quantite produite par chaque usine'
         usi = []
         qte_prod_restante = self.nb_de_commande_total()
         for k in range (len(self.usines)):
@@ -113,27 +80,11 @@ class Entreprise :
 
 
 
-    '''def tri_bulles(tab: List[float],site: List) -> List:
-        sites = site.copy()
-        for k in range(len(tab)):
-            print(tab)
-            for j in range(k-1,-1,-1):
-                if tab[j]>tab[k]:
-                    tab[j],tab[k] = tab[k],tab[j]
-                    sites[j],sites[k]=sites[k],sites[j]
-                    k=k-1
-        return (tab,sites)'''
-
-
-    def entrepot_magasin(self,m:Magasin): 
-        list_entrepot = []
-        for e in self.entrepots:
-            list_entrepot.append(e.cout_stock)
     
-    def cap_restante(self,i):
-        return self.entrepots[i].cap_stock
+
 
     def trans(self):
+        'renvoie le tableau transport à partir de la strategie trivial'
         nbu = len(self.usines)
         nbe = len(self.entrepots)
         nbm = len(self.magasins)
@@ -156,25 +107,29 @@ class Entreprise :
         return tr
 
     def cout_prod_tot(self):
+        'calcul le cout total de prodiction du jour'
         cprod = 0
         for p in range(len(self.production())):
             cprod = cprod + self.production()[p]*self.usines[p].cout_prod
         return cprod
 
-    def arrive_stock(self,i:int): #renvoie ce qui arrive dans le stock
+    def arrive_stock(self,i:int): 
+        'renvoie ce qui arrive dans le stock'
         a = 0
         for k in range (len(self.trans())): #ca correspond a la colonne du site i
             a = a + self.trans()[k][i]
         return a
 
-    def depart_stock(self,i:int): #renvoie ce qui est envoyer depuit le stock 
+    def depart_stock(self,i:int): 
+        'renvoie ce qui est envoyer depuit le stock '
         d = 0
         for k in range (len(self.trans())):#ca correspond a la ligne du site i
             d = d + self.trans()[i][k]
         return d 
 
 
-    def stock_sites(self): #renvoie un tableau ou chaque sous liste donne l'etat du stock de chaque site jour apres jour
+    def stock_sites(self): 
+        'renvoie un tableau ou chaque sous liste donne letat du stock de chaque site jour apres jour'
         l = [[]]
         nbu = len(self.usines)
         nbe = len(self.entrepots)
@@ -197,14 +152,16 @@ class Entreprise :
             l.append(cop)
         return(l)
 
-    def cout_total_stock(self,j:int): #renvoie le cout total du stock du jour j
+    def cout_total_stock(self,j:int): 
+        'renvoie le cout total du stock du jour j'
         cst =0
         for k in range (len(self.stock_sites()[0])):
             cst = cst + self.stock_sites()[j][k]
         return cst
 
 
-    def cout_trans(self): #renvoie le cout de transpoert total
+    def cout_trans(self): 
+        'renvoie le cout de transpoert total'
         ctrans = 0
         for i in range(len(self.trans())):
             for j in range(len(self.trans())):
@@ -213,7 +170,8 @@ class Entreprise :
 
 
 
-    def sol(self): #renvoie un tableau ou chaque ligne i est la une liste represantant le jour i du fichier sol
+    def sol(self): 
+        'renvoie un tableau ou chaque ligne i est la une liste represantant le jour i du fichier sol'
         L = [] 
         for j in range(self.horizon): 
             L.append([]) 
@@ -230,16 +188,56 @@ class Entreprise :
         return L 
 
     #ajout possible :
-    
+
     def cout_usine_magasin(self,u:Usine,m:Magasin):
-        nbu = len(self.usines)
-        nbe = len(self.entrepots)
-        nbm = len(self.magasins)
-        nbs = nbu+nbe+nbm
+        'calcule le cout global d un produit de l usine vers le magasin'
         iu = self.usines.index(u)
         im = self.magasins.index(m)
+        return(u.cout_prod + u.cout_stock + self.transportt[iu][im] + m.cout_stock)
 
-        return(u.cout_prod + u.cout_stock + self.trans()[iu][im])
+    def cout_usine_entrepot(self,u:Usine,e:Entrepot):
+        'calcule le cout global d un produit de l usine vers l entrepot'
+        iu = self.usines.index(u)
+        ie = self.entrepots.index(e)
+        return(u.cout_prod + u.cout_stock + self.transportt[iu][ie] + e.cout_stock)
+
+    def cout_entrepot_magasin(self,u:Usine,e:Magasin):
+        'calcule le cout global d un produit de l usine vers l entrepot'
+        ie = self.entrepots.index(u)
+        im = self.magasins.index(e)
+        return( e.cout_stock + self.transportt[ie][im] + u.cout_stock)
+
+    def tri_bulles(tab: List[float],site: List) -> List:
+        'trier les cout en meme temps que les differents chemin'
+        sites = site.copy()
+        for k in range(len(tab)):
+            print(tab)
+            for j in range(k-1,-1,-1):
+                if tab[j]>tab[k]:
+                    tab[j],tab[k] = tab[k],tab[j]
+                    sites[j],sites[k]=sites[k],sites[j]
+                    k=k-1
+        return (tab,sites)
+    
+    def prod_ame(self,chemin:List[Tuple][Site]):
+        'on a esseyer de recalculer de magniere dynamiquement pour obtenier des meilleurs'
+        'resultat en modifiant la production le transport et donc'
+        'le stockage à l aide d une liste ordonner des cout'
+        prod_act = []
+        for k in range(len(self.usines)):
+            prod_act.append(0)
+        for m in self.magasins:
+            reste_dem = self.commande(m)
+            while reste_dem != 0:
+                for ch in range(len(chemin)):
+                    pass
+        pass
+                    
+    
+    
+
+
+    
     
 
 
@@ -250,14 +248,13 @@ print ("prod:")
 print(a.production())
 print ('time:' )
 #print(end - start)
-print(a)
+#print(a)
 #print(len(a.usines), len(a.magasins), len(a.entrepots))
 #b =Transport(a.instance, 1, 1 + len(a.usines) + len(a.entrepots)).data[1]
 #print(b)        
 #print(a.cout_magasin(1,1))
 
-print(a.cout_usine_magasin(a.usines[0],a.magasins[0]))
-print(a.fct())
+
 
 
 
