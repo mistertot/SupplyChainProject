@@ -129,9 +129,12 @@ En exécutant le fichier \emph{checker.py} pour l'instance \emph{A3b}, nous obte
     \label{fig:checker} % crée un label pour pouvoir y faire référence plus tard
 \end{figure}
 
-
+Les résultats obtenus sont le reflet de notre première solution : comme celle-ci réagit de manière linéaire et sans recul, nous obtenons des bilans qui peuvent parfois poser problème. De plus, notre programme met nettement plus de temps à s'exécuter que les 10 secondes exigées. Malgré tout, nous parvenons à obtenir des résultats pour chaque instance.
 %----------------------------%
 \subsection{Limites et améliorations possibles}
+Notre première solution a pu être correctement implémentée et fonctionne. En revanche, cette méthode ne permet pas d'aboutir à de bonnes combinaisons entre sites car elle est triviale.
+
+Notre seconde idée n'a pu être implémentée dans les délais mais nous forgions en elle un espoir de gestion efficace des flux. Nous pouvions la situer à la frontière entre solution acceptable et solution optimale. Cependant, la comparaison des coûts de l'ensemble des chemins possibles pour chaque magasin aurait engendré une grande complexité algorithmique. Nous aurions dû ajouter des méthodes de tri efficaces telles que le tri fusion.
 
 %************************************************************%
 \end{document}
