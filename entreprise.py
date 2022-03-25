@@ -1,7 +1,7 @@
 from ast import Index
 from generateur_de_demandes import recup_param , recup_historique
 from magasin import Magasin 
-from typing import List
+from typing import List, Tuple
 from sites import Site
 from usine import Usine
 from entrepot import Entrepot
@@ -15,7 +15,7 @@ import time
 
 
 class Entreprise :
-
+    ''' Classe modelisant une entreprise qui contient toutes les'''
     def __init__(self, instance : str):
         
         self.instance : str = instance
@@ -27,8 +27,42 @@ class Entreprise :
         self.horizon: int = recup_param(instance)[0]
         self.prix: float = recup_param(instance)[1]
         self.transportt = traitement_de_texte.recup_transport(instance)
+        self.nbusines = len(self.usines)
+        self.nbentropots = len(self.entrepots)
+        self.nbmagasins = len(self.magasins)
 
-    
+    def fct(self):
+        L = []
+        tran = self.transportt
+        n = len(tran)
+        m = len(tran[0])
+        for i in range(n):
+            for j in range(m):
+                if tran[i][j][1] > 0:
+                    a = (i, j, tran[i][j][1])
+                    L.append(a)
+        return L
+
+    def cout(self):
+        L=[]
+        a = self.fct()
+        for elt in a:
+            pass
+
+
+
+
+
+    def chemins(self):
+        L = []
+        n = len(self.transportt)
+        m = len(self.transportt[0])
+        for i in range(n):
+            for j in range(m):
+                chem = self.chemin()
+        pass
+
+
     def commande (self,m) -> int :
         compteur : int = 0 
         for k in range(len(self.historique[m])):
@@ -202,10 +236,10 @@ class Entreprise :
         nbe = len(self.entrepots)
         nbm = len(self.magasins)
         nbs = nbu+nbe+nbm
-        iu = Index(u in self.usines)
-        im = Index(m in self.magasins)
+        iu = self.usines.index(u)
+        im = self.magasins.index(m)
 
-        return(u.cout_prod + u.cout_stock + self.trans()[iu][im]
+        return(u.cout_prod + u.cout_stock + self.trans()[iu][im])
     
 
 
@@ -216,13 +250,14 @@ print ("prod:")
 print(a.production())
 print ('time:' )
 #print(end - start)
-#print(a)
+print(a)
 #print(len(a.usines), len(a.magasins), len(a.entrepots))
 #b =Transport(a.instance, 1, 1 + len(a.usines) + len(a.entrepots)).data[1]
 #print(b)        
 #print(a.cout_magasin(1,1))
 
-
+print(a.cout_usine_magasin(a.usines[0],a.magasins[0]))
+print(a.fct())
 
 
 

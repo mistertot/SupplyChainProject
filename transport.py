@@ -33,14 +33,18 @@ class Transport:
         self.data = donnes[site_i-1][site_j-1]
         self.site_i = site_i
         self.site_j = site_j
+        
     def __repr__(self) -> str:
         return " sites {2}_{3} ( capacite : {0}, cout : {1} ) ".format(self.data[0], self.data[1], self.site_i, self.site_j)
     
-
+    
 
 '''a = Transport('inst\B6b', 1, 3)
 b = Transport('inst\B6b', 1, 4)
 c = Transport('inst\B7a', 1, 4)
 print(a,c, sep = '\n')'''
-
+a = recup_transport('inst\B6b')
+print(a)
+#b=sorted(a, key=lambda x: x[1])
+#print(b)
 
