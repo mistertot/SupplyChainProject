@@ -1,4 +1,4 @@
-import re
+
 from typing import List
 from magasin import Magasin
 from usine import Usine
@@ -15,9 +15,9 @@ def recup_param(instance: str) -> tuple:
     return (horizon, prix)
 
 def recup_sites(instance: str) -> List:
-    '''Lit le fichier nom-sites.txt et initialise les différents sites'''
+    '''Lit le fichier nom-sites.txt et initialise les différents sites''' #that's working
     fichier = instance + '-sites.txt'
-    with open(fichier,'r') as f:
+    with open(fichier,'r') as f: 
         content = f.readlines()
         magasins = []
         entrepots = []
@@ -41,15 +41,17 @@ def recup_sites(instance: str) -> List:
                 entrepots.append(Entrepot(helpvar[0], helpvar[1], helpvar[2], helpvar[3], helpvar[4], helpvar[5]))
         
         data = [usines, entrepots, magasins]
-        print(len(data[0]))
+       # print(len(data[0]))
         return data
 
 def recup_transport(instance: str)-> List:
-    
+    #that's working
     fichier = instance + '-transport.txt'
     with open(fichier, 'r') as f:
+        L = findall('\d+', instance)
+        print(L)
         n = int(findall('\d+', instance)[0])
-        print(n)
+        #print(n)
         cpt = 0
         capacites = []
         couts = []
@@ -76,19 +78,19 @@ def recup_historique(instance: str):
         content = f.readlines()
         for elt in content:
             hist: list = []
-            print(elt)
+           # print(elt)
             helpvar = elt.split(',')
-            print(helpvar)
+            #print(helpvar)
             n = len(helpvar)
-            print(n)
+            #print(n)
             for i in range(n):                   
                 hist.append(int(helpvar[i]))
-                print(hist)
+                #print(hist)
             historiques.append(hist)
 
     return(historiques)
 
-recup_historique('inst\A6a')
+print('recup_historique',recup_historique('inst\A6a'))
 
 
 class Stockage_de_donnee :
@@ -113,7 +115,7 @@ class Stockage_de_donnee :
 
 # a = 'C1334a'
 #print(int(a[1:-1]))
-#print(recup_transport('inst\B7a'))
+print('recup_transport', recup_transport('inst\A6a'))
 
 #print(recup_param('inst\B6b'))
 #print(recup_sites('inst\B6b'))

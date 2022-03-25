@@ -5,8 +5,6 @@ from sites import Site
 from usine import Usine
 from entrepot import Entrepot
 from transport import Transport
-from traitement_de_texte import recup_sites, recup_transport
-from traitement_de_texte import Stockage_de_donnee
 import traitement_de_texte
 
 class Entreprise :
@@ -22,29 +20,12 @@ class Entreprise :
         self.horizon: int = recup_param(instance)[0]
         self.prix: float = recup_param(instance)[1]
         self.transportt = traitement_de_texte.recup_transport(instance)
-
-    
-    def commande (self,m) -> int :
-        compteur : int = 0 
-        for k in range(len(self.historique[m])):
-            compteur = compteur + self.historique[m][k]
-        return compteur/len(self.historique[m]) 
-
+ 
+ 
+ 
     def __repr__(self) -> str:
         return "( entreprise: {0}; {1}; {2} ".format(self.usines,self.entrepots,self.magasins) 
 
-    
-    def nb_de_commande_total(self):
-        com_tot = 0
-        for k in range (len(self.magasins)):
-            com_tot = com_tot + self.commande(k)
-        return com_tot
-
-    def liste_com(self):
-        lst_com = []
-        for k in range(len(self.magasins)):
-            lst_com.append(int(self.commande(k))+1)
-        return lst_com
 
     def cout_magasin(self, ordre_usine: int, ordre_magasin: int):
         '''l'ordre c'est l'ordre reel et non pas la position dans la liste'''
@@ -57,6 +38,28 @@ class Entreprise :
         #print("1: {0}, 2: {1}, 3: {2}, 4: {3}".format(self.usines[ordre_usine-1].cout_prod, self.magasins[ordre_magasin-1].cout_stock , self.usines[ordre_usine-1].cout_stock, cout_transport))
         
         return sans_entrepot
+
+
+
+    def commande (self,m) -> int : #modifiable
+        compteur : int = 0 
+        for k in range(len(self.historique[m])):
+            compteur = compteur + self.historique[m][k]
+        return compteur/len(self.historique[m]) 
+
+    
+    def nb_de_commande_total(self): #checked
+        com_tot = 0
+        for k in range (len(self.magasins)):
+            com_tot = com_tot + self.commande(k)
+        return com_tot
+
+    def liste_com(self): #liste avec la commande de chaque magasin pour un jour j
+        lst_com = []
+        for k in range(len(self.magasins)):
+            lst_com.append(int(self.commande(k))+1)
+        return lst_com
+
 
 
     def production(self) -> List[int] :

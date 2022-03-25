@@ -38,7 +38,7 @@ def type_demande(instance: str) -> str:
 
     return demande[-1][0]
 
-def moyenne(instance: str, ordre_magasin: int) -> list[int]:
+def d(instance: str, ordre_magasin: int) -> list[int]:
     n = recup_param(instance)[0]
 
     if type_demande(instance) == 'A':
@@ -48,9 +48,10 @@ def moyenne(instance: str, ordre_magasin: int) -> list[int]:
     else:
         donnee: int = int(sum(recup_historique(instance)[ordre_magasin-1])/len(recup_historique(instance)[ordre_magasin-1]))
         donnees : list[int] = [donnee for _ in range(n)]
-        return donnees
+        return donnees #lissage de donnees
 
 
 
 
-print("that's it", moyenne('inst\B3a', 1))
+print("that's it", d('inst\B6a', 1))
+print('opla ', recup_historique('inst\B6a'))

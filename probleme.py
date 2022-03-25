@@ -22,24 +22,25 @@ class Probleme:
         file: str = instance +'.sol'
         with open(file, 'w') as f:
             data = Entreprise(instance).sol()
-            for i in data:
-                f.write(str(i[0]) + ';')
-                for j in i[1]:
-                    f.write(str(j) + ';')
-                for j in range(len(i[2])-1):
-                    f.write(str(i[2][j]) + '\t')
-                f.write(str(i[2][len(i[2])]) + ';')
-                for j in i[3]:
-                    f.write(str(j) + ';')
-                for j in range(4, 7):
-                    f.write(str(i[j]) + ';')
-                f.write(str[i][7] + '\n')
+            f.write(str(data))
+            #for i in data:
+            #    f.write(str(i[0]) + ';')
+             #   for j in i[1]:
+              #      f.write(str(j) + ';')
+               # for j in range(len(i[2])-1):
+                #    f.write(str(i[2][j]) + '\t')
+            #    f.write(str(i[2][len(i[2])]) + ';')
+             #   for j in i[3]:
+              #      f.write(str(j) + ';')
+               # for j in range(4, 7):
+                #    f.write(str(i[j]) + ';')
+                #f.write(str[i][6] + '\n')
 
 
 ## -----------------------------------------------------------------------------
 if __name__ == "__main__":
     ## Choix de l'instance (lu dans CONFIG ; "mini" par défaut)
-    INSTANCE = "mini"
+    INSTANCE = "inst\A6a"
     if os.path.exists("CONFIG"):
         with open("CONFIG", "r") as config:
             for ligne in config.readlines():
@@ -53,4 +54,5 @@ if __name__ == "__main__":
                     break
 
     ## Résolution
-    Probleme(INSTANCE)
+    #Probleme(INSTANCE)
+    p = Probleme('inst\A6a')

@@ -13,5 +13,12 @@ class Site:
         self.stock_int : int = stock_int #5
         self.stock_fin : int = stock_fin #6
     
-    def stock_actuel(self):
+
+    
+    def prod(self, jour: int):
         pass
+
+    def stock_actuel(self, jour: int):
+        if jour == 1:
+            return self.stock_int
+        #return self.stock_actuel(jour -1) + 
