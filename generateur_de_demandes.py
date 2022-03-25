@@ -1,4 +1,7 @@
 from typing import List
+import numpy as np
+import matplotlib.pyplot as plt
+
 
 def recup_param(instance: str) -> tuple:
     '''Lit le fichier nom-params.txt et renvoie l'horizon de planification ainsi que le prix d'un produit'''
@@ -51,7 +54,12 @@ def d(instance: str, ordre_magasin: int) -> list[int]:
         return donnees #lissage de donnees
 
 
-
+def trace():
+    abscisses=np.linspace(0, 10, 20)
+    ordonnees=np.linspace(0, 10, 20)
+    plt.plot(abscisses,ordonnees, 'bs')
+    plt.show()
 
 #print("that's it", d('inst\B6a', 1))
 #print('opla ', recup_historique('inst\B6a'))
+# print(trace())
