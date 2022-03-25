@@ -27,11 +27,11 @@ class Probleme:
                 f.write(str(champs[0]) + ';')
 
                 for prod in champs[1]:    
-                    f.write(str(prod) + ';')
+                    f.write(str(prod) )
                 f.write(';')
                 for trans in champs[2]:
                     f.write(str(trans) + ' ')
-                f.write(';')
+  
                 for vente in champs[3]:
                     f.write(str(vente) + ';')
                 f.write(';')
@@ -58,4 +58,4 @@ if __name__ == "__main__":
 
     ## Résolution
     #Probleme(INSTANCE)
-    p = Probleme('inst\A6a')
+    p = Probleme('inst\A3a')

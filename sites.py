@@ -15,8 +15,6 @@ class Site:
     
 
     
-    def prod(self, jour: int):
-        pass
 
     def stock_actuel(self, jour: int):
         if jour == 1:

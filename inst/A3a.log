@@ -1,0 +1,76 @@
+----------------------------------------------------
+CHECKER-1.1 : inst\A3a @ 2022-03-25 15:31:10.950066
+----------------------------------------------------
+Exécution de Probleme sur inst\A3a...
+Your OS does not support SIGALRM: timeout disabled. Beware of infinite loops.
+----------------------------------------------------
+Lecture et vérification de la solution...
+Jour 1:Transports en trop:0 0 76 0 0 0 0 0 0 76
+Jour 1:Ventes prévues invalides pour le Magasin 2: n'est pas un entier (0 utilisé)
+Jour 1, Usine 0:Capacité de stockage insuffisante ; stock prévu de 126 limité à 100.
+Jour 1:Coûts totaux de stockage mal estimés:150.0 !=40.0.
+Jour 1:Coûts de transport mal estimés:418.0 !=0.0.
+Jour 2:Transports en trop:0 0 76 0 0 0 0 0 0 76
+Jour 2:Ventes prévues invalides pour le Magasin 2: n'est pas un entier (0 utilisé)
+Jour 2, Usine 0:Capacité de stockage insuffisante ; stock prévu de 176 limité à 100.
+Jour 2:Coûts totaux de stockage mal estimés:150.0 !=40.0.
+Jour 2:Coûts de transport mal estimés:418.0 !=0.0.
+Jour 3:Transports en trop:0 0 76 0 0 0 0 0 0 76
+Jour 3:Ventes prévues invalides pour le Magasin 2: n'est pas un entier (0 utilisé)
+Jour 3, Usine 0:Capacité de stockage insuffisante ; stock prévu de 176 limité à 100.
+Jour 3:Coûts totaux de stockage mal estimés:150.0 !=40.0.
+Jour 3:Coûts de transport mal estimés:418.0 !=0.0.
+Jour 4:Transports en trop:0 0 76 0 0 0 0 0 0 76
+Jour 4:Ventes prévues invalides pour le Magasin 2: n'est pas un entier (0 utilisé)
+Jour 4, Usine 0:Capacité de stockage insuffisante ; stock prévu de 176 limité à 100.
+Jour 4:Coûts totaux de stockage mal estimés:150.0 !=40.0.
+Jour 4:Coûts de transport mal estimés:418.0 !=0.0.
+Jour 5:Transports en trop:0 0 76 0 0 0 0 0 0 76
+Jour 5:Ventes prévues invalides pour le Magasin 2: n'est pas un entier (0 utilisé)
+Jour 5, Usine 0:Capacité de stockage insuffisante ; stock prévu de 176 limité à 100.
+Jour 5:Coûts totaux de stockage mal estimés:150.0 !=40.0.
+Jour 5:Coûts de transport mal estimés:418.0 !=0.0.
+Jour 6:Transports en trop:0 0 76 0 0 0 0 0 0 76
+Jour 6:Ventes prévues invalides pour le Magasin 2: n'est pas un entier (0 utilisé)
+Jour 6, Usine 0:Capacité de stockage insuffisante ; stock prévu de 176 limité à 100.
+Jour 6:Coûts totaux de stockage mal estimés:150.0 !=40.0.
+Jour 6:Coûts de transport mal estimés:418.0 !=0.0.
+Jour 7:Transports en trop:0 0 76 0 0 0 0 0 0 76
+Jour 7:Ventes prévues invalides pour le Magasin 2: n'est pas un entier (0 utilisé)
+Jour 7, Usine 0:Capacité de stockage insuffisante ; stock prévu de 176 limité à 100.
+Jour 7:Coûts totaux de stockage mal estimés:150.0 !=40.0.
+Jour 7:Coûts de transport mal estimés:418.0 !=0.0.
+Jour 8:Transports en trop:0 0 76 0 0 0 0 0 0 76
+Jour 8:Ventes prévues invalides pour le Magasin 2: n'est pas un entier (0 utilisé)
+Jour 8, Usine 0:Capacité de stockage insuffisante ; stock prévu de 176 limité à 100.
+Jour 8:Coûts totaux de stockage mal estimés:150.0 !=40.0.
+Jour 8:Coûts de transport mal estimés:418.0 !=0.0.
+Jour 9:Transports en trop:0 0 76 0 0 0 0 0 0 76
+Jour 9:Ventes prévues invalides pour le Magasin 2: n'est pas un entier (0 utilisé)
+Jour 9, Usine 0:Capacité de stockage insuffisante ; stock prévu de 176 limité à 100.
+Jour 9:Coûts totaux de stockage mal estimés:150.0 !=40.0.
+Jour 9:Coûts de transport mal estimés:418.0 !=0.0.
+Jour 10:Transports en trop:0 0 76 0 0 0 0 0 0 76
+Jour 10:Ventes prévues invalides pour le Magasin 2: n'est pas un entier (0 utilisé)
+Jour 10, Usine 0:Capacité de stockage insuffisante ; stock prévu de 176 limité à 100.
+Jour 10:Coûts totaux de stockage mal estimés:150.0 !=40.0.
+Jour 10:Coûts de transport mal estimés:418.0 !=0.0.
+Il y a eu 30 erreurs ! Il faut les corriger.
+Il y a eu 20 alertes ! Il faudrait les corriger.
+----------------------------------------------------
+Évaluation prévisionnelle...
+COÛT TOTAL PRÉVISIONNEL       :        1690.00€
+... DONT PRODUITS MANQUANTS   :           0.00€
+VENTES TOTALES PRÉVISIONNELLES:       25500.00€
+BILAN PRÉVISIONNEL            :       23810.00€
+----------------------------------------------------
+Évaluation en simulation...
+COÛT TOTAL (moyenne)          :        4075.00€
+... DONT PRODUITS MANQUANTS   :        2550.00€
+VENTES TOTALES (moyenne)      :        2550.00€
+BILAN (moyenne)               :       -1525.00€
+----------------------------------------------------
+Écritures des indicateurs...
+----------------------------------------------------
+SCORE=-1525.00
+Terminé.
