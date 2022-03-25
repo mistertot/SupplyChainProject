@@ -22,6 +22,7 @@ class Probleme:
         '''Résout l'instance indiquée.'''
         file: str = instance +'.sol'
         data = Entreprise(instance).sol()
+
         with open(file, 'w') as f:
             for champs in data:
                 f.write(str(champs[0]) + ';')
@@ -58,4 +59,4 @@ if __name__ == "__main__":
 
     ## Résolution
     #Probleme(INSTANCE)
-    p = Probleme('inst\A3a')
+    p = Probleme('inst\C3a') 

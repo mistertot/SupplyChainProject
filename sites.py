@@ -1,4 +1,4 @@
-
+__authors__ = 'Romain Hoaurau, Sylvain Guo, Thomas Ptr, Mustapha Rachdi'
 
 
 class Site:
@@ -14,9 +14,3 @@ class Site:
         self.stock_fin : int = stock_fin #6
     
 
-    
-
-    def stock_actuel(self, jour: int):
-        if jour == 1:
-            return self.stock_int
-        #return self.stock_actuel(jour -1) + 

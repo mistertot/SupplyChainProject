@@ -1,3 +1,8 @@
+__authors__ = 'Romain Hoaurau, Sylvain Guo, Thomas Ptr, Mustapha Rachdi'
+
+
+'''fichier qui regroupe les methodes de traitement de texte
+ utilisees dans la resolution du probleme'''
 
 from typing import List
 from magasin import Magasin
@@ -45,13 +50,10 @@ def recup_sites(instance: str) -> List:
         return data
 
 def recup_transport(instance: str)-> List:
-    #that's working
     fichier = instance + '-transport.txt'
     with open(fichier, 'r') as f:
         L = findall('\d+', instance)
-        #print(L)
         n = int(findall('\d+', instance)[0])
-        #print(n)
         cpt = 0
         capacites = []
         couts = []
@@ -70,6 +72,8 @@ def recup_transport(instance: str)-> List:
 
 
 def recup_historique(instance: str):
+    '''recupere le fichier nom-historique.tx et renvoie l'historique des magasins sous forme 
+    d'une liste'''
     
     fichier = instance +'-historiques.txt'
     historiques: list = []
@@ -78,44 +82,10 @@ def recup_historique(instance: str):
         content = f.readlines()
         for elt in content:
             hist: list = []
-           # print(elt)
             helpvar = elt.split(',')
-            #print(helpvar)
             n = len(helpvar)
-            #print(n)
             for i in range(n):                   
                 hist.append(int(helpvar[i]))
-                #print(hist)
             historiques.append(hist)
 
     return(historiques)
-
-#print('recup_historique',recup_historique('inst\A6a'))
-
-
-class Stockage_de_donnee :
-    def __init__(self,instance : str) -> None:
-        self.historique = recup_historique(instance)
-        self.transport = recup_transport(instance)
-        self.sites = recup_sites(instance)
-        self.paramétre = recup_param(instance)
-        
-    def hist(self):
-        return self.historique
-
-    def transp(self):
-        return self.transport
-
-    def sit(self): 
-        return self.sites
-
-    def parametre(self):
-        return self.paramétre
-
-
-# a = 'C1334a'
-#print(int(a[1:-1]))
-#print('recup_transport', recup_transport('inst\A6a'))
-
-#print(recup_param('inst\B6b'))
-#print(recup_sites('inst\B6b'))
