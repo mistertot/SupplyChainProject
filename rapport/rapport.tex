@@ -91,9 +91,6 @@ Ainsi, pour les sites ne comprenant pas certains de ces attributs, il est néces
 %----------------------------%
 \subsection{Stratégie}
 Dans un premier temps, nous avons modélisé une solution simple, la production se basant sur la somme des moyennes des demandes. Nous avons choisi de répartir cette production de manière linéaire : l'usine n°1 produit en premier dans la limite de sa capacité sans perte, puis l'usine n°2 et ainsi de suite.
-
-Dans un second temps, nous avons voulu mettre en place une meilleure solution en comparant les coûts de l'ensemble des chemins possibles pour chaque magasin. Notre nouvelle méthode consistait à classer les coûts par ordre croissant puis à construire un quadruplet \emph{(usine, entrepôt, magasin, coût)}. A partir de ce classement il est alors possible de déterminer la quantité envoyée entre les sites sans perte.
-
 %----------------------------%
 \subsection{Algorithmes principaux}
 
@@ -134,7 +131,7 @@ Les résultats obtenus sont le reflet de notre première solution : comme celle-
 \subsection{Limites et améliorations possibles}
 Notre première solution a pu être correctement implémentée et fonctionne. En revanche, cette méthode ne permet pas d'aboutir à de bonnes combinaisons entre sites car elle est triviale.
 
-Notre seconde idée n'a pu être implémentée dans les délais mais nous forgions en elle un espoir de gestion efficace des flux. Nous pouvions la situer à la frontière entre solution acceptable et solution optimale. Cependant, la comparaison des coûts de l'ensemble des chemins possibles pour chaque magasin aurait engendré une grande complexité algorithmique. Nous aurions dû ajouter des méthodes de tri efficaces telles que le tri fusion.
+Notre seconde idée n'a pu être implémentée dans les délais mais nous forgions en elle un espoir de gestion efficace des flux. Nous pouvions la situer à la frontière entre solution acceptable et solution optimale. Nous pensions comparer les coûts de l'ensemble des chemins possibles pour chaque magasin. Notre nouvelle méthode consistait à classer les coûts par ordre croissant puis à construire un quadruplet \emph{(usine, entrepôt, magasin, coût)}. A partir de ce classement il aurait alors été possible de déterminer la quantité envoyée entre les sites sans perte. Cependant, la comparaison des coûts de l'ensemble des chemins possibles pour chaque magasin aurait engendré une grande complexité algorithmique. Nous aurions dû ajouter des méthodes de tri efficaces telles que le tri fusion.
 
 %************************************************************%
 \end{document}
