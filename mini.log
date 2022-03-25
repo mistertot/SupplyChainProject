@@ -1,31 +1,7 @@
 ----------------------------------------------------
-CHECKER 1.1:inst/mini @ 2022-02-16 12:34:56.360484
+CHECKER-1.1 : mini @ 2022-03-25 10:57:44.896005
 ----------------------------------------------------
-Exécution de Probleme sur inst/mini...
-----------------------------------------------------
-Lecture et vérification de la solution...
-Jour 4, Magasin 2:Capacité de stockage insuffisante ; stock prévu de 127 limité à 110.
-Jour 5, Magasin 2:Capacité de stockage insuffisante ; stock prévu de 137 limité à 110.
-Jour 6, Magasin 2:Capacité de stockage insuffisante ; stock prévu de 137 limité à 110.
-Jour 7, Magasin 2:Capacité de stockage insuffisante ; stock prévu de 137 limité à 110.
-Jour 8, Magasin 2:Capacité de stockage insuffisante ; stock prévu de 137 limité à 110.
-Jour 9, Magasin 2:Capacité de stockage insuffisante ; stock prévu de 137 limité à 110.
-Jour 10, Magasin 2:Capacité de stockage insuffisante ; stock prévu de 137 limité à 110.
-Il y a eu 7 alertes ! Il faudrait les corriger.
-----------------------------------------------------
-Évaluation prévisionnelle...
-COÛT TOTAL PRÉVISIONNEL       :        2737.00€
-... DONT PRODUITS MANQUANTS   :           0.00€
-VENTES TOTALES PRÉVISIONNELLES:       33711.00€
-BILAN PRÉVISIONNEL            :       30974.00€
-----------------------------------------------------
-Évaluation en simulation...
-COÛT TOTAL (moyenne)          :        2722.00€
-... DONT PRODUITS MANQUANTS   :           0.00€
-VENTES TOTALES (moyenne)      :       34272.00€
-BILAN (moyenne)               :       31550.00€
-----------------------------------------------------
-Écritures des indicateurs...
-----------------------------------------------------
-SCORE=31550.00
-Terminé.
+Ex�cution de Probleme sur mini...
+Your OS does not support SIGALRM: timeout disabled. Beware of infinite loops.
+Exception inattendue lors de l'ex�cution de votre programme:list index out of range
+Fichier solution mini.sol n'existe pas.

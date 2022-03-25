@@ -204,7 +204,7 @@ end = time.time()
 print ("prod:")
 print(a.production())
 print ('time:' )
-print(end - start)
+#print(end - start)
 #print(a)
 #print(len(a.usines), len(a.magasins), len(a.entrepots))
 #b =Transport(a.instance, 1, 1 + len(a.usines) + len(a.entrepots)).data[1]

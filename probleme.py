@@ -12,6 +12,7 @@ Rappels :
 
 import os.path
 from entreprise import *
+from numpy import savetxt
 
 ## -----------------------------------------------------------------------------
 class Probleme:
@@ -20,20 +21,23 @@ class Probleme:
     def __init__(self, instance: str) -> None:
         '''Résout l'instance indiquée.'''
         file: str = instance +'.sol'
+        data = Entreprise(instance).sol()
         with open(file, 'w') as f:
-            data = Entreprise(instance).sol()
-            for i in data:
-                f.write(str(i[0]) + ';')
-                for j in i[1]:
-                    f.write(str(j) + ';')
-                for j in range(len(i[2])-1):
-                    f.write(str(i[2][j]) + '\t')
-                f.write(str(i[2][len(i[2])]) + ';')
-                for j in i[3]:
-                    f.write(str(j) + ';')
-                for j in range(4, 7):
-                    f.write(str(i[j]) + ';')
-                f.write(str[i][6] + '\n')
+            for champs in data:
+                f.write(str(champs[0]) + ';')
+
+                for prod in champs[1]:    
+                    f.write(str(prod) + ';')
+                f.write(';')
+                for trans in champs[2]:
+                    f.write(str(trans) + ' ')
+                f.write(';')
+                for vente in champs[3]:
+                    f.write(str(vente) + ';')
+                f.write(';')
+                f.write(str(champs[4]) + ';')
+                f.write(str(champs[5]) + ';')
+                f.write(str(champs[6]) + '\n')
 
 
 ## -----------------------------------------------------------------------------
