@@ -58,7 +58,7 @@ Nous avons fait le choix de diviser chaque entité en une classe. La classe \emp
 
 Par ailleurs, nous avons créé une classe \emph{Transport} qui modélise le transport d'un site i vers un site j. Comme il ne s'agit pas d'un site, nous n'avons pas utilisé d'héritage pour la construire.
 
-De même, nous avons construit une classe \emph{Entreprise} qui comporte les méthodes principales de résolution du problème.
+De même, nous avons construit une classe \emph{Entreprise} qui comporte les méthodes principales de résolution du problème. Cette classe comporte une liste de sites, donc une liste d'usines, d'entrepôts et de magasins. Elle contient également les informations nécessaires à la résolution du problème, comme l'horizon de planification, le prix et toutes les données récupérées depuis les fichiers d'instances.
 
 Enfin, la classe \emph{Probleme} fournie joue le rôle du chef d'orchestre de toutes les autres. C'est elle qui sera appelée pour la résolution du problème.
 
@@ -87,18 +87,27 @@ Ainsi, pour les sites ne comprenant pas certains de ces attributs, il est néces
 %************************************************************%
 
 \section{Stratégie de résolution}
+
+%----------------------------%
+\subsection{Stratégie}
+Dans un premier temps, nous avons modélisé une solution simple, la production se basant sur la somme des moyennes des demandes. Nous avons choisi de répartir cette production de manière linéaire : l'usine n°1 produit en premier dans la limite de sa capacité sans perte, puis l'usine n°2 et ainsi de suite.
+
+Dans un second temps, nous avons voulu mettre en place une meilleure solution en comparant les coûts de l'ensemble des chemins possibles pour chaque magasin. Notre nouvelle méthode consistait à classer les coûts par ordre croissant puis à construire un quadruplet \emph{(usine, entrepôt, magasin, coût)}. A partir de ce classement il est alors possible de déterminer la quantité envoyée entre les sites sans perte.
+
 %----------------------------%
 \subsection{Algorithmes principaux}
 
 \subsubsection{L'écriture}
-L'algorithme d'écriture se trouve dans la classe \emph{Probleme}. Il se base sur le résultat de la méthode \emph{sol()} de la classe \emph{Entreprise}.
+L'algorithme d'écriture se trouve dans la classe \emph{Probleme}. Il se base sur le résultat de la méthode \emph{sol()} de la classe \emph{Entreprise}. Il crée un fichier \emph{nom.sol} dans le format demandé. La méthode \emph{sol()} est la méthode clef de la classe \emph{Entreprise} car elle renvoie le résultat sans mise en forme. Elle se base sur plusieurs autres méthodes de la classe \emph{Entreprise}. Nous allons nous pencher sur les principales.
 
 \subsubsection{Classe Entreprise}
 Comme nous l'avons évoqué précédemment, la classe \emph{Entreprise} comporte les méthodes principales.
 La méthode :
 \begin{itemize}
-\item \emph{production()} renvoie les quantités produites par chaque usine
-\item \emph{trans()} planifie les transports
+\item \emph{commande()} renvoie la demande prévisionnelle moyenne du magasin passé en argument (conformément à notre permière stratégie).
+\item \emph{commande\_totale()} renvoie la somme des moyennes des demandes.
+\item \emph{production()} se base sur notre stratégie de production. Pour chaque usine, elle calcule la quantité maxmimale qui peut être produite sans perte. Elle renvoie les quantités produites par chaque usine.
+\item \emph{trans()} crée une matrice de taille $n\times n$ (n : nombre de sites). Selon la demande de chaque magasin, on transporte une certaine quantité. La logique est linéaire : le transport de la quantité produite vers la quantité demandée se fait dans l'ordre des usines et des magasins.
 \item \emph{liste\_com()} renvoie les commandes prévues pour chaque magasin
 \item \emph{cout\_prod\_tot()} renvoie le coût total de production du jour
 \item \emph{stock\_sites()} rend compte de l'état des stocks de chaque site jour après jour
@@ -106,14 +115,20 @@ La méthode :
 \item\emph{cout\_trans()} renvoie le cout total de transport du jour
 \end{itemize}
 
-%----------------------------%
-\subsection{Indicateurs}
-
 %************************************************************%
 
 \section{Bilan}
 %----------------------------%
 \subsection{Résultats numériques}
+En exécutant le fichier \emph{checker.py} pour l'instance \emph{A3b}, nous obtenons les résultats suivants :
+
+\begin{figure}[h] % h pour here (ci-dessous)
+    \centering
+    \includegraphics[width=1\textwidth]{checker} % inclure l'image
+    \caption{Résultat pour l'instance A3b} % ajoute une légende
+    \label{fig:checker} % crée un label pour pouvoir y faire référence plus tard
+\end{figure}
+
 
 %----------------------------%
 \subsection{Limites et améliorations possibles}
