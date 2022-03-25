@@ -1,3 +1,4 @@
+from ast import Index
 from generateur_de_demandes import recup_param , recup_historique
 from magasin import Magasin 
 from typing import List
@@ -145,7 +146,7 @@ class Entreprise :
         nbe = len(self.entrepots)
         nbm = len(self.magasins)
         nbs = nbu+nbe+nbm
-        for u in range (nbu):
+        for u in range (nbu):#initialisation avec le stock de depart
             l[0].append(self.usines[u].stock_int)
         for e in range (nbe):
             l[0].append(self.entrepots[e].stock_int)
@@ -194,7 +195,17 @@ class Entreprise :
             L[-1].append(self.cout_trans()) #renvoie le cout total de transport du jour
         return L 
 
+    #ajout possible :
     
+    def cout_usine_magasin(self,u:Usine,m:Magasin):
+        nbu = len(self.usines)
+        nbe = len(self.entrepots)
+        nbm = len(self.magasins)
+        nbs = nbu+nbe+nbm
+        iu = Index(u in self.usines)
+        im = Index(m in self.magasins)
+
+        return(u.cout_prod + u.cout_stock + self.trans()[iu][im]
     
 
 
